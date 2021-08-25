@@ -2,14 +2,21 @@
   "name": "exercise-3-post",
   "version": "1.0.0",
   "description": "## Write a user login - powered by POST",
-  "main": "server.js",
+  "exports": "./server.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^2.1.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "14.x"
+  }
 }
