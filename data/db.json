@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "_id": "2475c8f2-cf16-4a22-9cb4-93dcf66955d9"
+    },
+    {
+      "_id": "03e8b185-f48e-458b-8aa6-9ec92d2b51dd",
+      "username": "anna",
+      "password": "hellofrom theotherside"
+    },
+    {
+      "_id": "644cf467-e349-48d0-b8fa-97aa399d3ae7",
+      "username": "dfdsf",
+      "password": "dfdfgfg"
+    },
+    {
+      "_id": "a2146bf8-a5ad-4ae3-9cea-3a709a6b1bf1",
+      "username": "fdgdfg",
+      "password": "dfgdfgdfgfdg"
+    },
+    {
+      "_id": "f10467a5-77ea-4728-b550-d5e30207bfe9",
+      "username": "dfgdf",
+      "password": "dfgdfg"
+    },
+    {
+      "_id": "487acc0b-7442-4758-ab22-d8b604f35c4d",
+      "username": "",
+      "password": ""
+    },
+    {
+      "_id": "bc93f026-0473-4c35-aad4-bae4e405de5d",
+      "username": "sfrtrtert",
+      "password": ""
+    }
+  ]
+}

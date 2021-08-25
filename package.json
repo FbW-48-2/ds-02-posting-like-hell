@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "description": "## Write a user login - powered by POST",
   "main": "server.js",
+  "type": "module",
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "lowdb": "^2.1.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
