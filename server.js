@@ -1,17 +1,20 @@
 const express = require('express')
+const cors = require('cors')
 
 const app = express()
 
-// middlewares +++++++++++++++++++++++++
-
-app.use( express.json() )
-
-//  ++++++++++++++++++++++++++++++++++++
 let users = [
     { _id: "u1", username: "user1", password: "pw1" },
     { _id: "u2", username: "user2", password: "pw2" },
     { _id: "u3", username: "user3", password: "pw3" },
 ]
+// middlewares +++++++++++++++++++++++++
+
+app.use( express.json() )
+app.use( cors() )
+
+//  ++++++++++++++++++++++++++++++++++++
+
 
 app.get("/", (req, res) => {
     res.send(`<h1>Hola Mundo</h1>
@@ -25,21 +28,17 @@ app.get("/users", (req, res)=> {
 })
 
 app.post("/signup", (req, res)=> {
-    // console.log(req.body);
+    console.log("[POST] /signup => are you trying to signup??");
     const { username, password } = req.body
-
     const findUser = users.find(user => {
         return user.username === username
-        ||
-        user.password === password
     })
 
    if(findUser){
         return res.json({
-            error: `Username  or password already exist, push your brain and figure out a something new`
+            error: `Username already exist, push your brain and figure out something new`
         })
    }
-
 
    if(!username){
        return res.json({
@@ -53,11 +52,43 @@ app.post("/signup", (req, res)=> {
        })
    }
 
-    const newUser= { ...req.body, id: Date.now().toString() }
+    const newUser= { ...req.body, _id: Date.now().toString(), status: "success", loggedIn: true }
     users.push(newUser)
     // res.json({ message: 'User signed up successfully...' })
 
-    res.json(newUser)
+    // send de user's data and status without password to the frontend
+    res.json({
+        _id: newUser._id,
+        username: newUser.username,
+        status: newUser.status,
+        loggedIn: newUser.loggedIn
+    })
+})
+
+app.post("/login", (req, res)=> {
+    console.log("[POST] /login => please don't mess out your authentication");
+    const {username, password} = req.body
+    const auth = users.find(user => {
+        return user.username === username && user.password === password
+    })
+
+    // send de user's data and status without password frontend
+    if(auth){
+        return res.json({
+            _id: auth._id,
+            username: auth.username,
+            status: auth.status,
+            loggedIn: auth.loggedIn
+        })
+    }
+    else{
+        return res.json({
+            error: 'Failed to login, wrong credentials, try again.',
+            // status: "failed",
+            loggedIn: false
+        })
+    }
+
 })
 
 
