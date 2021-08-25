@@ -4,11 +4,14 @@
   "description": "## Write a user login - powered by POST",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^2.1.0"
   },
   "scripts": {
     "start": "node server.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC"

@@ -8,28 +8,81 @@ body {
 
 .App {
   /* text-align: center; */
-  width: 600px;
-  margin: 0 auto;
-  padding: 50px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px white;
-  position: absolute;
+  width: 100%;
+  /* position: absolute;
   top: 100px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
+}
+
+nav {
+  height: 40px;
+  margin-bottom: 40px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 10px white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-weight: bold;
+}
+
+a {
+  width: fit-content;
+  margin: 0 10px;
+  padding: 5px 5px 0px;
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+.active {
+  /* border-bottom: 2px solid white; */
+  text-decoration: underline;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px;
+  /* text-align: left; */
+  border-radius: 25px;
+  box-shadow: 0 0 10px white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 40px;
 }
 
 h1 {
   text-align: center;
 }
 
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  /* padding: 25px; */
-  /* text-align: left; */
+.content {
+  padding: 25px;
 }
 
-.button-container {
-  text-align: center;
+img {
+  margin-bottom: 20px;
 }
