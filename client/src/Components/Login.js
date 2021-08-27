@@ -12,6 +12,8 @@ export default function Login() {
         password: ""
     })
 
+    const [alert, setAlert] = useState({})
+
     const handleChange = (e) => {
         setGetData({
             ...getData, [e.target.name]: e.target.value
@@ -34,6 +36,7 @@ export default function Login() {
                 console.log(data);
                 setUserStatus(data)
                 if(data.error){
+                    setAlert(data)
                     setGetData({
                         ...getData, password:""
                     })
@@ -91,11 +94,11 @@ export default function Login() {
         </Form>
         <Container>
             {
-                !userStatus.error ? 
+                !alert.error ? 
                     "" 
                     :
                     <Alert variant="danger" className="mt-5">
-                        { userStatus.error }
+                        { alert.error }
                     </Alert>
             }
         </Container>

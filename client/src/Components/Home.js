@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <div className="d-flex justify-content-center align-items-center flex-column" style={{ height: "50vh"}}>
             {
-                userStatus. loggedIn ? 
+                userStatus.loggedIn ? 
                     <h1 className="display-1">Wellcome {userStatus.username}</h1>
                     :
                     <>

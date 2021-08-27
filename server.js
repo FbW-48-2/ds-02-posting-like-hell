@@ -1,13 +1,31 @@
-const express = require('express')
-const cors = require('cors')
+import express from 'express'
+import cors from 'cors'
 
 const app = express()
+const PORT = 5000
 
-let users = [
-    { _id: "u1", username: "user1", password: "pw1" },
-    { _id: "u2", username: "user2", password: "pw2" },
-    { _id: "u3", username: "user3", password: "pw3" },
-]
+import { join, dirname } from 'path'
+import { Low, JSONFile } from 'lowdb'
+import { fileURLToPath } from 'url'
+
+// package to create ids
+import { v4 as uuidv4 } from 'uuid';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Use JSON file for storage
+const file = join(__dirname, '/data/db.json')
+const adapter = new JSONFile(file)
+const db = new Low(adapter)
+
+// Read data from JSON file, this will set db.data content
+await db.read()
+
+// If file.json doesn't exist, db.data will be null
+// Set default data
+db.data ||= { users: [] }
+const { users } = db.data
+
 // middlewares +++++++++++++++++++++++++
 
 app.use( express.json() )
@@ -27,7 +45,7 @@ app.get("/users", (req, res)=> {
     res.json(users)
 })
 
-app.post("/signup", (req, res)=> {
+app.post("/signup", async (req, res)=> {
     console.log("[POST] /signup => are you trying to signup??");
     const { username, password } = req.body
     const findUser = users.find(user => {
@@ -52,33 +70,43 @@ app.post("/signup", (req, res)=> {
        })
    }
 
-    const newUser= { ...req.body, _id: Date.now().toString(), status: "success", loggedIn: true }
+    const newUser= { 
+        ...req.body, 
+        _id: uuidv4(), 
+        // status: "success", 
+        loggedIn: true 
+    }
     users.push(newUser)
     // res.json({ message: 'User signed up successfully...' })
+
+    await db.write()
 
     // send de user's data and status without password to the frontend
     res.json({
         _id: newUser._id,
         username: newUser.username,
-        status: newUser.status,
+        // status: newUser.status,
         loggedIn: newUser.loggedIn
     })
 })
 
-app.post("/login", (req, res)=> {
+app.post("/login", async (req, res)=> {
     console.log("[POST] /login => please don't mess out your authentication");
     const {username, password} = req.body
     const auth = users.find(user => {
         return user.username === username && user.password === password
     })
 
-    // send de user's data and status without password frontend
+
     if(auth){
+        // send de user's data and status without password to the frontend and update database
+        Object.assign(auth, { loggedIn: true})
+        await db.write()
         return res.json({
             _id: auth._id,
             username: auth.username,
-            status: auth.status,
-            loggedIn: auth.loggedIn
+            // status: auth.status,
+            loggedIn: true
         })
     }
     else{
@@ -91,8 +119,17 @@ app.post("/login", (req, res)=> {
 
 })
 
+app.put("/users/:id", (req, res) => {
+    console.log("[PUT] update user by id");
+    const { id } = req.params;
+    const newData = req.body 
+    const findUser = users.find(user => user._id === id)
+    Object.assign(findUser, newData )
+    db.write()
+    res.json(findUser)
+})
 
-const PORT = 5000
+
 
 app.listen(PORT, () => {
     console.log(`API has started successfully on PORT ${PORT} 💪`);

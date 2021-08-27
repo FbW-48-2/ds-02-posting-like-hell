@@ -8,9 +8,28 @@ export default function Navigation() {
   const { userStatus, setUserStatus } = useContext(UserContext)
 
   const handleClick  = () => {
-    setUserStatus({
-      ...userStatus, loggedIn: false
-    })
+
+    // update userStatus in the backend
+    const updateLogOut = async () => {
+      const settings = {
+        method: 'PUT',
+        body: JSON.stringify({ loggedIn: false }),
+        headers: {
+          "Content-Type": "application/json",
+        }
+      }
+      try{
+        const res = await fetch(`/users/${userStatus._id}`, settings)
+        const data = await res.json()
+        console.log(data);
+        setUserStatus(data)
+
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+    updateLogOut()
   }
     
     return (
