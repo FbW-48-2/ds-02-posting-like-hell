@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "username": "habid",
+      "password": "123123",
+      "_id": "526bcc83-8b7f-4153-b47e-20f8c1439ffd",
+      "loggedIn": true
+    },
+    {
+      "username": "hinako",
+      "password": "123456",
+      "_id": "0089b734-505c-4888-9d4d-b49ee67d0a2c",
+      "loggedIn": false
+    },
+    {
+      "username": "roberto",
+      "password": "123123",
+      "_id": "39ce2daf-cf32-4c70-90b4-600b00234fb7",
+      "loggedIn": false
+    },
+    {
+      "username": "AMLO",
+      "password": "4t",
+      "_id": "69a79d4f-4290-4177-b067-e42b4a6f4631",
+      "loggedIn": false
+    },
+    {
+      "username": "Mizuki_taka",
+      "password": "123456",
+      "_id": "9ee30c2f-6528-4d0d-9e0d-c18fd82742c9",
+      "loggedIn": false
+    },
+    {
+      "username": "habid_1",
+      "password": "123123",
+      "_id": "bcb1e498-1eeb-45e2-877f-ba6e21a287f5",
+      "loggedIn": false
+    }
+  ]
+}
