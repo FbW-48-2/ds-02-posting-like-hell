@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "24f2f556-2412-4a6a-90f9-20250f5e710e",
+      "username": "Shinhee",
+      "password": "1234"
+    },
+    {
+      "id": "45166648-3910-4fed-ab1a-d21eb8bc2894",
+      "username": "Corey",
+      "password": "1234"
+    },
+    {
+      "id": "29f0a20b-7e2b-455f-aaa1-5919490e7c3f",
+      "username": "Silver",
+      "password": "1234"
+    },
+    {
+      "id": "f97d30cf-ae0b-4751-9c24-fc41779902c1",
+      "username": "Xinkki",
+      "password": "1234"
+    }
+  ]
+}
