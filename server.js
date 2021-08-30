@@ -8,8 +8,6 @@ import { Low, JSONFile } from "lowdb";
 import { fileURLToPath } from "url";
 import { v4 as uuidv4 } from "uuid";
 
-
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const file = join(__dirname, "data/db.json");
 const adapter = new JSONFile(file);
@@ -42,7 +40,6 @@ app.post('/signup', async (req, res) => {
 })
 
 
-
 app.post('/login', (req, res)=>{
     const { username } = req.body
     const { password } = req.body
@@ -62,8 +59,6 @@ app.get('/users', (req, res) => {
     const users = db.data.users
     res.json(users)
 })
-
-
 
 
 app.listen(PORT, ()=> {
