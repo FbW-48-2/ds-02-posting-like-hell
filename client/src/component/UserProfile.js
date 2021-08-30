@@ -1,10 +1,14 @@
 import React from 'react';
+import loginContext from '../context/loginContext';
+import { useContext } from 'react';
 
-const UserProfile = ({name}) => {
+const UserProfile = () => {
+    const {user} = useContext(loginContext);
+
     return (
         <div>
-            <h2>This is a landging page for our users.</h2>
-            <p>Welcome back, {name}!</p>
+            <p>This is dashboard</p>
+            <p>Welcome, {user.username} !</p>
         </div>
     )
 }

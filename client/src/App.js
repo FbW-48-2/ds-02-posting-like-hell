@@ -1,58 +1,35 @@
 import './App.css';
 import React, {useState} from 'react';
 import UserProfile from './component/UserProfile';
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect, Switch, NavLink} from 'react-router-dom';
+import Login from './component/Login';
+import Home from './component/Home';
+import { useHistory } from 'react-router';
+import loginContext from './context/loginContext';
 
 function App() {
-const [userName, setUserName] = useState("");
-const [password, setPassword] = useState("");
-const [user, setUser] = useState(null);
-const [isUser, setIsUser] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({});
+  const [invalidUser, setInvalidUser] = useState("");
+  const history = useHistory();
 
-function login(e){
-e.preventDefault();
-let user = {username: userName, password: password};
-
-fetch('http://localhost:5000/login', {
-  method: 'POST',
-  headers: { "Content-Type": "application/json" }, 
-  body: JSON.stringify( user )
-})
-.then(res => res.json())
-.then(userApi => {
-  if (!userApi.username && !userApi.password) {
-    console.log("error")
-  }
-  console.log( userApi )
-  setUser( userApi )
-  setIsUser(true)
-} )
-}
-
+  
   return (
     <div className="App">
-
-      <form onSubmit={(e)=>{login(e)}}>
-        <input 
-        type="text" 
-        placeholder="id"
-        defaultValue="reset" 
-        value={userName}
-        onChange={(e)=> setUserName(e.target.value)}  
-        />
-        <input 
-        type="password" 
-        placeholder="password" 
-        defaultValue="reset"
-        value={password}
-        onChange={(e)=> setPassword(e.target.value)}  
-        />
-        <button type="submit" >log in now</button>
-      </form>
-      <div className={!isUser ? "hidden": ""}>
-      {user && user.username ? <UserProfile name={user.username} /> : "invalid user" }
-      </div>
-     
+  
+  <loginContext.Provider value={{userName, setUserName, password, setPassword, user, setUser, invalidUser, setInvalidUser, history}} >
+          <div className="header">
+            <NavLink exact activeClassName="active" to="/">Home</NavLink>
+            <NavLink activeClassName="active" to="/login">Login</NavLink>
+            <NavLink activeClassName="active" to="/user">Dashboard</NavLink>
+          </div>
+  <Switch>
+    <Route path='/' exact component={Home} />
+    <Route path='/login' component={Login} />
+    <Route path='/user' component={UserProfile} />
+  </Switch>
+  </loginContext.Provider>
     </div>
     
   );
