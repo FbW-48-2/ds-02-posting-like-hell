@@ -7,8 +7,9 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "dev": "node server.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC"
