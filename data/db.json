@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "_id": "9ecd2878-2e8d-4b2c-adbc-ff4b8e9e683d",
+      "username": "Jon",
+      "password": "backendrules2021!"
+    },
+    {
+      "_id": "92be11b8-6914-49a6-9fa6-49fc51ca132a",
+      "username": "Bob",
+      "password": "ishotthesheriff"
+    },
+    {
+      "_id": "4483e75a-eff4-49db-b6ef-ecbbf8ce7854",
+      "username": "Bob",
+      "password": "ishotthesheriff"
+    }
+  ]
+}
